@@ -109,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+     *  turning On Bluetooth
+     * */
+
     public void turnOnBluetooth() {
         if (bluetoothAdapter == null) {
             Toast.makeText(this, "Device doesn't support bluetooth", Toast.LENGTH_SHORT).show();
@@ -139,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
 //            startActivity(enableBluetooth);
         }
     }
-
+/*
+*  handling ScanDevice
+* */
     private void scanDevice() {
 
         //Scanning
@@ -169,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         Toast.makeText(MainActivity.this, "stopScan", Toast.LENGTH_SHORT).show();
-                        System.out.println("stopScan++++++++++++++++++++++++++++");
+                        System.out.println("Permissions is not going through stopScan++++++++++++++++++++++++++++");
 //                        bluetoothLeScanner.stopScan(leScanCallback);
                         return;
 
@@ -189,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
                 }
 
-                System.out.println("startScan++++++++++++++++++++++++++++");
+                System.out.println("Permissions is not going through startScan++++++++++++++++++++++++++++");
 //                bluetoothLeScanner.startScan(leScanCallback);
                 return;
             }
@@ -210,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
                 }
                 Toast.makeText(this, "stopScan", Toast.LENGTH_SHORT).show();
-                System.out.println("stopScan++++++++++++++++++++++++++++");
+                System.out.println("Permissions is not going through stopScan++++++++++++++++++++++++++++");
 //                bluetoothLeScanner.stopScan(leScanCallback);
                 return;
             }
@@ -219,6 +225,10 @@ public class MainActivity extends AppCompatActivity {
             invalidateOptionsMenu();
         }
     }
+
+    /*
+     *  turning On Location
+     * */
 
     private void locationPermission(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
@@ -245,13 +255,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onScanFailed(int errorCode) {
             super.onScanFailed(errorCode);
-            System.out.println("*++++++++++==================+++++++++"+errorCode);
+            System.out.println("*++++++++++==================+++++++++:::::::"+errorCode);
         }
 
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
             super.onScanResult(callbackType, result);
-            System.out.println("****************************" + result);
+            System.out.println("****************************::::::::::::::::::::" + result);
             recViewAdapter.setBluetoothDeviceArrayList(result.getDevice());
             devicesRecyclerView.setAdapter(recViewAdapter);
 
